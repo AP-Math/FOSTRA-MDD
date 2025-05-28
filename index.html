@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <title>Etické podnikání</title>
   <style>
-   body {
+body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
   padding: 16px;
   margin: 0;
   color: #333;
-  line-height: 1.5;
+  line-height: 0.8;
+  font-size: 2em; /* zdvojnásobení oproti běžné velikosti (16px -> 32px) */
 }
 
-h1, h2, h3 {
+h1, h2 {
   text-align: center;
   margin-top: 0;
 }
@@ -23,31 +24,28 @@ h1, h2, h3 {
   border: 1px solid #ddd;
   padding: 15px;
   margin-bottom: 20px;
-  font-size: 1.1em;
+  font-size: 1em; /* zůstane relativní k body (tedy také větší) */
   text-align: center;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .decision {
   margin: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
   align-items: stretch;
 }
 
 button.btn {
-  padding: 16px;
-  font-size: 1.1em;
-  border-radius: 10px;
+  padding: 28px;               /* zvětšené okraje */
+  font-size: 2em;              /* dvojnásobný text v tlačítkách */
+  border-radius: 14px;
   background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
   transition: background 0.2s ease;
   width: 100%;
-  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -61,60 +59,38 @@ button.btn:active {
 
 input[type="number"],
 input[type="text"] {
-  font-size: 1.2em;
-  padding: 10px;
+  font-size: 2em;
+  padding: 14px;
   width: 100%;
-  max-width: 160px;
-  margin: 12px auto;
+  max-width: 250px;
+  margin: 20px auto;
   display: block;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 .hidden {
   display: none;
 }
 
-p#vysledek,
-p#vysledek2,
-p#vysledekDeti,
-p#zpravaDeti,
-p#zpravaPozar,
-p#zpravaZnacky,
-p#vysledekKontroly {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 12px;
-}
-
-/* Mobilní přizpůsobení */
 @media (max-width: 600px) {
   body {
     padding: 12px;
+    font-size: 2.2em; /* ještě větší pro malé displeje */
   }
 
   h1, h2 {
-    font-size: 1.5em;
+    font-size: 2.4em;
   }
 
-  button.btn {
-    font-size: 1.1em;
-    padding: 18px;
+  .btn {
+    font-size: 2.2em;
+    padding: 30px;
   }
 
   .stats, .scoreboard {
-    font-size: 1em;
-    padding: 12px;
-  }
-
-  .decision {
-    gap: 10px;
-  }
-
-  input[type="number"],
-  input[type="text"] {
     font-size: 1.1em;
-    padding: 10px;
+    padding: 16px;
   }
 }
 
@@ -229,6 +205,19 @@ p#vysledekKontroly {
   </div>
   <p id="zpravaDeti"></p>
 </div>
+
+
+<!-- Slide Výpočet náhrady dětí -->
+<div id="slide9_VypocetDeti" class="hidden">
+  <h2>Úkol: Kolik dětí nahradí 12 dospělých?</h2>
+  <p>Efektivita slide9_VypocetDetijednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? (Zaokrouhluj nahoru.)</p>
+  <input type="number" id="odpovedDeti" placeholder="Zadej výsledek">
+  <button class="btn" onclick="zpracujUkolDeti()">Odeslat odpověď</button>
+  <p id="vysledekDeti"></p>
+</div>
+
+
+
 
   <script>
     let zisk = 0;
@@ -431,6 +420,35 @@ function rozhodnutiDeti(volba) {
 }
 
 
+function zpracujUkolDeti() {
+    const odpoved = parseInt(document.getElementById("odpovedDeti").value, 10);
+    const efektivita = 0.35;
+    const potreba = Math.ceil(12 / efektivita);
+    const vysledek = document.getElementById("vysledekDeti");
+
+    if (odpoved === potreba) {
+      vysledek.innerHTML = "✅ <strong>BINGO!</strong> Správně!";
+      zisk += 2000;
+      aktualizuj();
+      setTimeout(() => {
+        document.getElementById("slide9_DetiVypocet").classList.add("hidden");
+        document.getElementById("slide10_Pozar").classList.remove("hidden");
+      }, 4000);
+    } else {
+      spatnePokusy++;
+      zisk -= 500;
+      aktualizuj();
+      if (spatnePokusy < 3) {
+        vysledek.innerHTML = "❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)";
+      } else {
+        vysledek.innerHTML = "<strong>🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</strong>";
+      }
+      if (zisk < 0 || etika < 0) {
+        alert("💥 Firma zkrachovala. Začni znovu.");
+        location.reload();
+      }
+    }
+  }
 
 
     aktualizuj();
