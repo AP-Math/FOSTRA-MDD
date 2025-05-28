@@ -3,45 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>Etické podnikání</title>
-  <style>
+ <style>
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
   padding: 2em;
   margin: 0;
   color: #333;
-  font-size: 2em;
-  line-height: 1.2;
+  font-size: 100%; /* základní velikost textu (1em = 16px) */
+  line-height: 1.5;
 }
 
-/* Hlavičky zarovnané a s mezerou pod */
+h1 {
+  font-size: 2.5em; /* nebo třeba 48px */
+}
+
+h2 {
+  font-size: 2em;
+}
+
+
+
+/* Hlavičky */
 h1, h2 {
   text-align: center;
   margin: 0 0 0.5em 0;
 }
 
-/* Hlavní karta/statistiky – vzhled podobný kalkulačce */
-.stats, .scoreboard {
-  max-width: 800px;
-  margin: 1em auto;
-  padding: 1em;
+.scoreboard {
+  font-size: 3.0em;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.08);
-  font-size: 2.5em;
-  text-align: center;
-  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  max-width: 500px;      /* šířka rámečku */
+  margin: 20px auto;     /* zarovnání na střed a mezery nahoře/dole */
 }
 
 /* Popis úkolu – větší a čitelnější */
 p.task-desc {
-  font-size: 1em;
+  font-size: 2.8em;
   text-align: center;
   margin: 1em auto;
   max-width: 800px;
 }
 
-/* Rozhodovací blok s mezerami mezi tlačítky */
+/* Rozhodovací tlačítka */
 .decision {
   margin: 1em 0;
   display: flex;
@@ -52,7 +59,7 @@ p.task-desc {
   margin-right: auto;
 }
 
-/* Tlačítka jako kalkulačka – velká, modrá, příjemná */
+/* Tlačítka */
 button.btn {
   padding: 28px;
   font-size: 2em;
@@ -74,10 +81,10 @@ button.btn:active {
   background-color: #004a80;
 }
 
-/* Vstupní pole: větší šířka, ale běžná velikost textu */
+/* Vstupy */
 input[type="number"],
 input[type="text"] {
-  font-size: 1em;
+  font-size: 3.0em;
   padding: 14px;
   width: 100%;
   max-width: 375px;
@@ -89,7 +96,7 @@ input[type="text"] {
   background: white;
 }
 
-/* Skrytí slidu */
+/* Skryté slidy */
 .hidden {
   display: none;
 }
@@ -98,25 +105,25 @@ input[type="text"] {
 @media (max-width: 600px) {
   body {
     padding: 1em;
-    font-size: 2.2em;
+    font-size: 110%;
   }
 
   h1, h2 {
-    font-size: 2.4em;
+    font-size: 1.8em;
   }
 
   .btn {
-    font-size: 2.2em;
-    padding: 30px;
+    font-size: 1.8em;
+    padding: 24px;
   }
 
-  .stats, .scoreboard {
-    font-size: 2.0em;
-    padding: 16px;
+  .scoreboard {
+    font-size: 1.2em;
+    padding: 14px;
   }
 
   p.task-desc {
-    font-size: 1.2em;
+    font-size: 2.6em;
   }
 }
   </style>
