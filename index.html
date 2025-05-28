@@ -4,169 +4,590 @@
   <meta charset="UTF-8">
   <title>Etické podnikání</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      padding: 2em;
-      margin: 0;
-      color: #333;
-      font-size: 100%;
-      line-height: 1.5;
-    }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  padding: 2em;
+  margin: 0;
+  color: #333;
+  font-size: 100%; /* základní velikost textu (1em = 16px) */
+  line-height: 1.5;
+}
 
-    h1 {
-      font-size: 2.5em;
-      text-align: center;
-      margin: 0 0 0.5em 0;
-    }
+h1 {
+  font-size: 2.4em; /* nebo třeba 48px */
+}
 
-    h2 {
-      font-size: 2em;
-      text-align: center;
-      margin: 0 0 0.5em 0;
-    }
+h2 {
+  font-size: 1.8em;
+}
 
-    .scoreboard {
-      font-size: 1.4em;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.08);
-      max-width: 500px;
-      margin: 20px auto;
-    }
 
-    p.task-desc {
-      font-size: 1.4em;
-      text-align: center;
-      margin: 1em auto;
-      max-width: 800px;
-    }
 
-    .decision {
-      margin: 1em 0;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+/* Hlavičky */
+h1, h2 {
+  text-align: center;
+  margin: 0 0 0.5em 0;
+}
 
-    button.btn {
-      padding: 28px;
-      font-size: 1.2em;
-      border-radius: 12px;
-      background-color: #007acc;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s ease;
-      width: 100%;
-      box-sizing: border-box;
-    }
+.scoreboard {
+  font-size: 3.0em;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  max-width: 500px;      /* šířka rámečku */
+  margin: 20px auto;     /* zarovnání na střed a mezery nahoře/dole */
+}
 
-    button.btn:hover {
-      background-color: #005fa3;
-    }
+/* Popis úkolu – větší a čitelnější */
+p.task-desc {
+  font-size: 2.8em;
+  text-align: center;
+  margin: 1em auto;
+  max-width: 800px;
+}
 
-    button.btn:active {
-      background-color: #004a80;
-    }
+/* Rozhodovací tlačítka */
+.decision {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    input[type="number"],
-    input[type="text"] {
-      font-size: 1.6em;
-      padding: 14px;
-      width: 100%;
-      max-width: 375px;
-      margin: 20px auto;
-      display: block;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.05);
-      background: white;
-    }
+/* Tlačítka */
+button.btn {
+  padding: 28px;
+  font-size: 2em;
+  border-radius: 12px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-    .slide {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
+button.btn:hover {
+  background-color: #005fa3;
+}
 
-    .slide.active {
-      display: block;
-      opacity: 1;
-    }
+button.btn:active {
+  background-color: #004a80;
+}
 
-    @media (max-width: 600px) {
-      body {
-        padding: 1em;
-        font-size: 110%;
-      }
+/* Vstupy */
+input[type="number"],
+input[type="text"] {
+  font-size: 3.0em;
+  padding: 14px;
+  width: 100%;
+  max-width: 375px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+  background: white;
+}
 
-      h1, h2 {
-        font-size: 1.8em;
-      }
+/* Skryté slidy */
+.hidden {
+  display: none;
+}
 
-      .btn {
-        font-size: 1em;
-        padding: 24px;
-      }
+/* Mobilní úpravy */
+//@media (max-width: 600px) {
+  //body {
+    //padding: 1em;
+    //font-size: 110%;
+  //}
 
-      .scoreboard {
-        font-size: 1.2em;
-        padding: 14px;
-      }
+  //h1, h2 {
+   // font-size: 1.8em;
+ // }
 
-      p.task-desc {
-        font-size: 1.2em;
-      }
-    }
+  //.btn {
+   // font-size: 1.8em;
+    //padding: 24px;
+  //}
+
+  //.scoreboard {
+   // font-size: 1.2em;
+    //padding: 14px;
+  //}
+
+  //p.task-desc {
+    //font-size: 2.6em;
+  //}
+//}
   </style>
 </head>
+
+
+
+
+
+
 <body>
 
   <h1>Sweatshop CEO</h1>
 
-  <div class="scoreboard">
-    <p>💰 Zisk: <span id="zisk">0</span></p>
-    <p>🌱 Etika: <span id="etika">100</span> %</p>
-    <p>⚠️ Riziko: <span id="riziko">0</span> %</p>
-  </div>
+ <div class="scoreboard">
+  <p>💰 Zisk: <span id="zisk">0</span></p>
+  <p>🌱 Etika: <span id="etika">100</span> %</p>
+  <p>⚠️ Riziko: <span id="riziko">0</span> %</p>
+</div>
 
-  <!-- Slides (pouze ukázka dvou slidu s přechodem) -->
-  <div id="slide0" class="slide active">
-    <h1>Vítej ve hře Sweatshop CEO</h1>
-    <p class="task-desc">Jsi ředitel závodu. Tvým cílem je zisk, ale hlídej si etiku a riziko!</p>
-    <div class="decision">
-      <button class="btn" onclick="zobrazSlide('slide0','slide1')">Začni podnikat</button>
-    </div>
+<div id="slide0_uvod">
+  <h1>Vítej ve hře Sweatshop CEO</h1>
+  <p class="task-desc">Jsi ředitel výrobního závodu v rozvojové zemi. Tvým cílem je dosahovat zisku, ale zároveň si hlídej etiku a riziko kolapsu firmy!</p>
+  <div class="decision">
+    <button class="btn" onclick="jdiNaSlide1()">Začni podnikat</button>
   </div>
+</div>
 
-  <div id="slide1" class="slide">
+  <!-- Slide 1 -->
+  <div id="slide1_zdravotni" class="hidden">
     <h2>Rozhodnutí 1: Bezpečnost</h2>
-    <p class="task-desc">Snižíš výdaje na zdravotní péči o zaměstnance?</p>
+    <p class="task-desc">Snížíš výdaje na zdravotní péči o zaměstnance?</p>
     <div class="decision">
-      <button class="btn" onclick="zobrazSlide('slide1','slide0')">Zpět</button>
-      <button class="btn" onclick="zobrazSlide('slide1','slide2')">Pokračovat</button>
+      <button class="btn" onclick="volba(true)">Ano – ušetřím, ale snížím etiku</button>
+      <button class="btn" onclick="volba(false)">Ne – investuji, udržím etiku</button>
     </div>
   </div>
+
+  <div id="nextSlide" class="hidden">
+    <button class="btn" onclick="jdiNaSlide2()">Pokračovat</button>
+  </div>
+
+  <!-- Slide s úkolem -->
+  <div id="slide2_Ukol" class="hidden">
+    <h2>Úkol: Výpočet</h2>
+    <p class="task-desc">Vypočítej: Pokud zaměstnáš 20 dětí a každému platíš 10 Kč/hod a pracují 10 hodin denně, kolik je to za den?</p>
+    <input type="number" id="odpoved" placeholder="Zadej výsledek">
+    <button class="btn" onclick="zpracujUkol()">Odeslat odpověď</button>
+    <p id="vysledek"></p>
+  </div>
+
+  <!-- Slide Požární bezpečnost -->
+  <div id="slide3_Pozar" class="hidden">
+    <h2>Rozhodnutí 2: Požární bezpečnost</h2>
+    <p class="task-desc">Chceš investovat do zlepšení požární bezpečnosti ve své továrně?</p>
+    <div class="decision">
+      <button class="btn" onclick="rozhodnutiPozar('investovat')">Ano – bezpečnost na prvním místě</button>
+      <button class="btn" onclick="rozhodnutiPozar('setrit')">Ne – ušetřím</button>
+    </div>
+    <p id="zpravaPozar"></p>
+  </div>
+
+  <!-- Slide Značky -->
+  <div id="slide4_Znacky" class="hidden">
+    <h2>Znát, s kým spolupracovat</h2>
+    <p class="task-desc">Která z těchto značek <strong>nespolupracuje</strong> nebo <strong>nespolupracovala</strong> se sweatshopy?</p>
+    <div class="decision">
+      <button class="btn" onclick="vyberZnacku('nike')">Nike</button>
+      <button class="btn" onclick="vyberZnacku('h&m')">H&amp;M</button>
+      <button class="btn" onclick="vyberZnacku('zara')">Zara</button>
+      <button class="btn" onclick="vyberZnacku('vsechny')">Všechny uvedené značky spolupracují</button>
+    </div>
+    <p id="zpravaZnacky"></p>
+  </div>
+
+  <!-- Slide Kontrola bezpečnosti -->
+  <div id="slide5_Kontrola" class="hidden">
+    <h2>Bezpečnostní kontrola</h2>
+    <p class="task-desc">Přišla kontrola na vaši továrnu. Teď hodně záleží na faktoru rizika. Určuje pravděpodobnost, se kterou může přijít pokuta.</p>
+    <p class="task-desc"><strong>Pravděpodobnost pokuty:</strong> <span id="pravdepodobnost"></span> %</p>
+    <button class="btn" onclick="zpracujKontrolu()">Zahájit kontrolu</button>
+    <p id="vysledekKontroly"></p>
+  </div>
+
+  <!-- Slide Úkol 2: Procenta -->
+  <div id="slide6_Ukol2" class="hidden">
+    <h2>Úkol: Procenta a výdaje</h2>
+    <p class="task-desc">Tvoje firma utratila 15 % z 20 000 Kč na marketing. Kolik to je?</p>
+    <input type="number" id="odpoved2" placeholder="Zadej výsledek">
+    <button class="btn" onclick="zpracujUkol2()">Odeslat odpověď</button>
+    <p id="vysledek2"></p>
+  </div>
+
+  <!-- Slide Rozhodnutí: Výběr dodavatele -->
+  <div id="slide7_Dodavatel" class="hidden">
+    <h2>Rozhodnutí: Výběr dodavatele</h2>
+    <p class="task-desc">Můžeš si vybrat mezi dvěma dodavateli:</p>
+    <ul>
+      <li><strong>Levný:</strong> +3000 Kč zisku, -20 etiky, +20 rizika</li>
+      <li><strong>Certifikovaný:</strong> +1000 Kč zisku, žádná změna etiky ani rizika</li>
+    </ul>
+    <div class="decision">
+      <button class="btn" onclick="rozhodnutiDodavatel('levny')">Levný dodavatel</button>
+      <button class="btn" onclick="rozhodnutiDodavatel('certifikovany')">Certifikovaný dodavatel</button>
+    </div>
+  </div>
+  
+  
+ <!-- Slide Zaměstnávání dětí -->
+<div id="slide8_Zamestnanideti" class="hidden">
+  <h2>Zaměstnávání dětí</h2>
+  <p class="task-desc">V některých zemích děti pracují, aby přežily. Když je zaměstnáš, získáš levnou pracovní sílu, ale je to eticky přijatelné?</p>
+  <p class="task-desc">Co uděláš?</p>
+  <div class="decision">
+    <button class="btn" onclick="rozhodnutiDeti('zamestnat')">Zaměstnám děti – zvýším zisk, snížím etiku, zvýším riziko, ale nakrmím je, ne?</button>
+    <button class="btn" onclick="rozhodnutiDeti('nezamestnat')">Nezaměstnám děti – zachovám etiku, mám přece čisté ruce, ne?</button>
+  </div>
+  <p id="zpravaDeti"></p>
+</div>
+
+
+<<div id="slide9_VypocetDeti" class="hidden">
+  <h2>Úkol: Kolik dětí nahradí 12 dospělých?</h2>
+  <p class="task-desc">Efektivita jednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? (Zaokrouhluj nahoru.)</p>
+  <input type="number" id="odpovedDeti" placeholder="Zadej výsledek">
+  <button class="btn" onclick="zpracujUkolDeti()">Odeslat odpověď</button>
+  <p id="vysledekDeti"></p>
+</div>
+
+
+<div id="slide10_HorlavaLatka" class="hidden">
+  <h2>Luxusní zakázka z Milána</h2>
+  <p class="task-desc">Přišla velká zakázka z Milána! Materiál je luxusní, ale velmi hořlavý.</p>
+  <ul>
+    <li><strong>Investovat do požární bezpečnosti</strong> – riziko se nezvýší</li>
+    <li><strong>Ušetřit</strong> – vyšší zisk, ale vyšší riziko požáru</li>
+  </ul>
+  <div class="decision">
+    <button class="btn" onclick="rozhodnutiHorlavaLatka('bezpecnost')">Investovat do bezpečnosti</button>
+    <button class="btn" onclick="rozhodnutiHorlavaLatka('usetrit')">Ušetřit peníze</button>
+  </div>
+</div>
+
+<!-- Slide 11: Požár v továrně -->
+<div id="slide11_Pozar" class="hidden">
+  <h2>🔥 Požár v továrně!</h2>
+  <p class="task-desc">Došlo k požáru v důsledku předchozích rozhodnutí. Musíte ho rychle uhasit!</p>
+  <div class="decision">
+    <button class="btn" onclick="uhasitPozar()">Zahasit požár</button>
+  </div>
+  <p id="zpravaPozar"></p>
+</div>
+
+<!-- Slide 12: Úloha – pracovní doba -->
+<div id="slide12_UlohaPocetZamestnancu" class="hidden">
+  <h2>Úkol: Výpočet pracovní doby</h2>
+  <p class="task-desc">Zakázku zvládnou 3 zaměstnanci za 10 hodin práce. Po polovině pracovní doby však dva z nich začnou zvracet a dostanou horečku. Kolik hodin celkem bude muset v továrně odpracovat zbývající zaměstnanec, aby zakázku dokončil?</p>
+  <input type="number" id="odpovedPracovniDoba" placeholder="Zadej výsledek">
+  <button class="btn" onclick="zpracujUkolPracovniDoba()">Odeslat odpověď</button>
+  <p id="vysledekPracovniDoba"></p>
+</div>
+
+
 
   <script>
-    function zobrazSlide(staryId, novyId) {
-      const stary = document.getElementById(staryId);
-      const novy = document.getElementById(novyId);
-      if (!stary || !novy) return;
-      stary.classList.remove("active");
-      setTimeout(() => {
-        stary.style.display = "none";
-        novy.style.display = "block";
-        setTimeout(() => {
-          novy.classList.add("active");
-        }, 10);
-      }, 300);
+    let zisk = 0;
+    let etika = 100;
+    let riziko = 0;
+    let spatnePokusy = 0;
+    let znackyUzSpravne = false;
+
+    function aktualizuj() {
+      document.getElementById("zisk").textContent = zisk;
+      document.getElementById("etika").textContent = etika;
+      document.getElementById("riziko").textContent = riziko;
     }
+
+    function volba(snizitBezpecnost) {
+      const tlacitka = document.querySelectorAll("#slide1_zdravotni .btn");
+      tlacitka.forEach(btn => btn.disabled = true);
+      if (snizitBezpecnost) {
+        zisk += 2000;
+        etika -= 30;
+        riziko += 20;
+      } else {
+        zisk += 500;
+      }
+      aktualizuj();
+      document.getElementById("nextSlide").classList.remove("hidden");
+    }
+
+    function jdiNaSlide1() {
+  document.getElementById("slide0_uvod").classList.add("hidden");
+  document.getElementById("slide1_zdravotni").classList.remove("hidden");
+}
+
+function jdiNaSlide2() {
+  document.getElementById("slide1_zdravotni").classList.add("hidden");
+  document.getElementById("nextSlide").classList.add("hidden");
+  document.getElementById("slide2_Ukol").classList.remove("hidden");
+}
+
+    function zpracujUkol() {
+      const odpoved = parseInt(document.getElementById("odpoved").value, 10);
+      const spravne = 20 * 10 * 10;
+      const vysledek = document.getElementById("vysledek");
+      if (odpoved === spravne) {
+        vysledek.innerHTML = "✅ <strong>BINGO!</strong> Pokračuj dál.";
+        zisk += 2000;
+        aktualizuj();
+        setTimeout(() => {
+          document.getElementById("slide2_Ukol").classList.add("hidden");
+          document.getElementById("slide3_Pozar").classList.remove("hidden");
+        }, 2000);
+      } else {
+        spatnePokusy++;
+        zisk -= 500;
+        aktualizuj();
+        if (zisk < 0 || etika < 0) {
+          alert("💥 Kaput. Začni celý quest úplně od začátku.");
+          location.reload();
+          return;
+        }
+        if (spatnePokusy < 3) {
+          vysledek.innerHTML = "❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)";
+        } else {
+          vysledek.innerHTML = "<strong>🧠 Domluv konzultační hodinu se svým matikářem!</strong>";
+        }
+      }
+    }
+
+    function rozhodnutiPozar(volba) {
+      const tlacitka = document.querySelectorAll("#slide3_Pozar .btn");
+      tlacitka.forEach(btn => btn.disabled = true);
+      const zprava = document.getElementById("zpravaPozar");
+      if (volba === 'investovat') {
+        zisk -= 500;
+        riziko = Math.max(0, riziko - 10);
+        zprava.textContent = "Investovali jste do bezpečnosti. Zisk je nyní nižší, ale riziko kolapsu kleslo.";
+      } else {
+        zisk += 500;
+        riziko += 20;
+        zprava.textContent = "Ušetřili jste, ale riziko požáru výrazně vzrostlo.";
+      }
+      aktualizuj();
+      setTimeout(() => {
+        document.getElementById("slide3_Pozar").classList.add("hidden");
+        document.getElementById("slide4_Znacky").classList.remove("hidden");
+      }, 2000);
+    }
+
+    function vyberZnacku(volba) {
+      const zprava = document.getElementById("zpravaZnacky");
+      const tlacitka = document.querySelectorAll("#slide4_Znacky .btn");
+      if (znackyUzSpravne) return;
+      if (volba === 'vsechny') {
+        zprava.innerHTML = "✅ <strong>BINGO!</strong> Všechny uvedené značky byly spojovány se sweatshopy. Výborně!";
+        zisk += 3000;
+        etika += 10;
+        aktualizuj();
+        znackyUzSpravne = true;
+        tlacitka.forEach(btn => btn.disabled = true);
+        setTimeout(() => {
+          document.getElementById("slide4_Znacky").classList.add("hidden");
+          document.getElementById("slide5_Kontrola").classList.remove("hidden");
+          document.getElementById("pravdepodobnost").textContent = riziko;
+        }, 2000);
+      } else {
+        zprava.innerHTML = "❌ Tato značka byla skutečně spojována se sweatshopy. Zkus přemýšlet komplexněji.";
+        etika -= 10;
+        riziko += 10;
+        aktualizuj();
+      }
+    }
+
+    function zpracujKontrolu() {
+  const vysledek = document.getElementById("vysledekKontroly");
+  const nahoda = Math.random() * 100;
+
+  if (nahoda < riziko) {
+    vysledek.innerHTML = "💸 Byli jste pokutováni 2000 Kč. Riziko se snížilo na polovinu.";
+    zisk -= 2000;
+    riziko = Math.floor(riziko / 2);
+  } else {
+    vysledek.innerHTML = "🍀 Měli jste štěstí. Kontrola nic nenašla, pokuta nebyla udělena.";
+  }
+
+  aktualizuj();
+
+  // přechod na další slide po 4 vteřinách bez ohledu na výsledek
+  setTimeout(() => {
+    document.getElementById("slide5_Kontrola").classList.add("hidden");
+    document.getElementById("slide6_Ukol2").classList.remove("hidden");
+  }, 4000); // změněno na 4 vteřiny dle požadavku
+}
+
+
+    function zpracujUkol2() {
+      const odpoved = parseInt(document.getElementById("odpoved2").value, 10);
+      const spravne = 0.15 * 20000;
+      const vysledek = document.getElementById("vysledek2");
+      if (odpoved === spravne) {
+        vysledek.innerHTML = "✅ Správně! Můžeš pokračovat.";
+        zisk += 1000;
+        aktualizuj();
+        setTimeout(() => {
+          document.getElementById("slide6_Ukol2").classList.add("hidden");
+          document.getElementById("slide7_Dodavatel").classList.remove("hidden");
+        }, 2000);
+      } else {
+        vysledek.innerHTML = "❌ Špatně. Uvažuj znovu.";
+        zisk -= 500;
+        aktualizuj();
+        if (zisk < 0 || etika < 0) {
+          alert("💥 Firma zkrachovala. Začni znovu.");
+          location.reload();
+        }
+      }
+    }
+
+  function rozhodnutiDodavatel(volba) {
+  const btns = document.querySelectorAll("#slide7_Dodavatel .btn");
+  btns.forEach(btn => btn.disabled = true); // Zablokovat tlačítka po volbě
+
+  if (volba === "levny") {
+    zisk += 3000;
+    etika -= 20;
+    riziko += 20;
+  } else if (volba === "certifikovany") {
+    zisk += 1000;
+    // etika a riziko beze změny
+  }
+
+  aktualizuj();
+
+  setTimeout(() => {
+    document.getElementById("slide7_Dodavatel").classList.add("hidden");
+    document.getElementById("slide8_Zamestnanideti").classList.remove("hidden");
+  }, 3000); // 3 sekundy pauza před přechodem
+}
+
+
+function rozhodnutiDeti(volba) {
+  const zprava = document.getElementById("zpravaDeti");
+  const tlacitka = document.querySelectorAll("#slide8_Zamestnanideti .btn");
+  tlacitka.forEach(btn => btn.disabled = true); // zablokuj tlačítka po volbě
+
+  if (volba === 'zamestnat') {
+    zisk += 3000;
+    etika -= 30;
+    riziko += 20;
+    zprava.innerHTML = "Zaměstnali jste děti. Zisk vzrostl, ale etické skóre kleslo.";
+  } else {
+    zprava.innerHTML = "Zachovali jste etiku? Peníze nejsou všechno – čisté ruce možná vydrží déle?";
+  }
+
+  aktualizuj();
+
+  setTimeout(() => {
+    document.getElementById("slide8_Zamestnanideti").classList.add("hidden");
+    document.getElementById("slide9_VypocetDeti").classList.remove("hidden");
+  }, 4000); // 4 vteřiny pauza
+}
+
+
+function zpracujUkolDeti() {
+  const odpoved = parseInt(document.getElementById("odpovedDeti").value, 10);
+  const efektivita = 0.35;
+  const potreba = Math.ceil(12 / efektivita);
+  const vysledek = document.getElementById("vysledekDeti");
+
+  if (odpoved === potreba) {
+    vysledek.innerHTML = "✅ <strong>BINGO!</strong> Správně!";
+    zisk += 2000;
+    aktualizuj();
+    setTimeout(() => {
+      document.getElementById("slide9_VypocetDeti").classList.add("hidden");
+      document.getElementById("slide10_HorlavaLatka").classList.remove("hidden");
+    }, 4000);
+  } else {
+    spatnePokusy++;
+    zisk -= 500;
+    aktualizuj();
+    if (spatnePokusy < 3) {
+      vysledek.innerHTML = "❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)";
+    } else {
+      vysledek.innerHTML = "<strong>🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</strong>";
+    }
+    if (zisk < 0 || etika < 0) {
+      alert("💥 Firma zkrachovala. Začni znovu.");
+      location.reload();
+    }
+  }
+}
+
+function rozhodnutiHorlavaLatka(volba) {
+  if (volba === 'bezpecnost') {
+    zisk -= 2000;
+  } else {
+    if (riziko < 30) {
+      riziko *= 2;
+    } else if (riziko >= 30 && riziko <= 50) {
+      riziko = 60;
+    } else {
+      riziko = 80;
+    }
+  }
+  aktualizuj();
+  setTimeout(() => {
+    document.getElementById("slide10_HorlavaLatka").classList.add("hidden");
+    document.getElementById("slide11_Pozar").classList.remove("hidden");
+  }, 2000);
+}
+
+function uhasitPozar() {
+  const zprava = document.getElementById("zpravaPozar");
+  const ztrata = Math.floor((riziko / 100) * zisk);
+  zisk -= ztrata;
+  zprava.innerHTML = `💥 Požár způsobil ztrátu ${ztrata} Kč. Zisk byl upraven.`;
+  aktualizuj();
+  setTimeout(() => {
+    document.getElementById("slide11_Pozar").classList.add("hidden");
+    document.getElementById("slide12_UlohaPocetZamestnancu").classList.remove("hidden");
+  }, 4000);
+}
+
+function zpracujUkolPracovniDoba() {
+  const odpoved = parseInt(document.getElementById("odpovedPracovniDoba").value, 10);
+  const vysledek = document.getElementById("vysledekPracovniDoba");
+  const spravnaOdpoved = 20;
+
+  if (odpoved === spravnaOdpoved) {
+    vysledek.innerHTML = "✅ <strong>Správně!</strong> Zbývající zaměstnanec musí opravdu odpracovat celkem 20 hodin.";
+    zisk += 1000;
+    aktualizuj();
+    setTimeout(() => {
+      document.getElementById("slide12_UlohaPracovniDoba").classList.add("hidden");
+      document.getElementById("slide13_DalsiKrok").classList.remove("hidden"); // přejít na další slide
+    }, 4000);
+  } else {
+    spatnePokusy++;
+    zisk -= 500;
+    aktualizuj();
+    if (spatnePokusy < 3) {
+      vysledek.innerHTML = "❌ Špatně. Zamysli se znovu – zohledni i tu práci, kterou už zaměstnanec odpracoval.";
+    } else {
+      vysledek.innerHTML = "<strong>🧠 Možná je čas poradit se s učitelem.</strong>";
+    }
+    if (zisk < 0 || etika < 0) {
+      alert("💥 Firma zkrachovala. Začni znovu.");
+      location.reload();
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+    aktualizuj();
   </script>
 
 </body>
