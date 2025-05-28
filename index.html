@@ -207,15 +207,46 @@ input[type="text"] {
 </div>
 
 
-<!-- Slide Výpočet náhrady dětí -->
-<div id="slide9_VypocetDeti" class="hidden">
+<<div id="slide9_VypocetDeti" class="hidden">
   <h2>Úkol: Kolik dětí nahradí 12 dospělých?</h2>
-  <p>Efektivita slide9_VypocetDetijednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? (Zaokrouhluj nahoru.)</p>
+  <p>Efektivita jednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? (Zaokrouhluj nahoru.)</p>
   <input type="number" id="odpovedDeti" placeholder="Zadej výsledek">
   <button class="btn" onclick="zpracujUkolDeti()">Odeslat odpověď</button>
   <p id="vysledekDeti"></p>
 </div>
 
+
+<div id="slide10_HorlavaLatka" class="hidden">
+  <h2>Luxusní zakázka z Milána</h2>
+  <p>Přišla velká zakázka z Milána! Materiál je luxusní, ale velmi hořlavý.</p>
+  <ul>
+    <li><strong>Investovat do požární bezpečnosti</strong> – riziko se nezvýší</li>
+    <li><strong>Ušetřit</strong> – vyšší zisk, ale vyšší riziko požáru</li>
+  </ul>
+  <div class="decision">
+    <button class="btn" onclick="rozhodnutiHorlavaLatka('bezpecnost')">Investovat do bezpečnosti</button>
+    <button class="btn" onclick="rozhodnutiHorlavaLatka('usetrit')">Ušetřit peníze</button>
+  </div>
+</div>
+
+<!-- Slide 11: Požár v továrně -->
+<div id="slide11_Pozar" class="hidden">
+  <h2>🔥 Požár v továrně!</h2>
+  <p>Došlo k požáru v důsledku předchozích rozhodnutí. Musíte ho rychle uhasit!</p>
+  <div class="decision">
+    <button class="btn" onclick="uhasitPozar()">Zahasit požár</button>
+  </div>
+  <p id="zpravaPozar"></p>
+</div>
+
+<!-- Slide 12: Úloha – pracovní doba -->
+<div id="slide12_UlohaPocetZamestnancu" class="hidden">
+  <h2>Úkol: Výpočet pracovní doby</h2>
+  <p>Zakázku zvládnou 3 zaměstnanci za 10 hodin práce. Po polovině pracovní doby však dva z nich začnou zvracet a dostanou horečku. Kolik hodin celkem bude muset v továrně odpracovat zbývající zaměstnanec, aby zakázku dokončil?</p>
+  <input type="number" id="odpovedPracovniDoba" placeholder="Zadej výsledek">
+  <button class="btn" onclick="zpracujUkolPracovniDoba()">Odeslat odpověď</button>
+  <p id="vysledekPracovniDoba"></p>
+</div>
 
 
 
@@ -421,34 +452,101 @@ function rozhodnutiDeti(volba) {
 
 
 function zpracujUkolDeti() {
-    const odpoved = parseInt(document.getElementById("odpovedDeti").value, 10);
-    const efektivita = 0.35;
-    const potreba = Math.ceil(12 / efektivita);
-    const vysledek = document.getElementById("vysledekDeti");
+  const odpoved = parseInt(document.getElementById("odpovedDeti").value, 10);
+  const efektivita = 0.35;
+  const potreba = Math.ceil(12 / efektivita);
+  const vysledek = document.getElementById("vysledekDeti");
 
-    if (odpoved === potreba) {
-      vysledek.innerHTML = "✅ <strong>BINGO!</strong> Správně!";
-      zisk += 2000;
-      aktualizuj();
-      setTimeout(() => {
-        document.getElementById("slide9_DetiVypocet").classList.add("hidden");
-        document.getElementById("slide10_Pozar").classList.remove("hidden");
-      }, 4000);
+  if (odpoved === potreba) {
+    vysledek.innerHTML = "✅ <strong>BINGO!</strong> Správně!";
+    zisk += 2000;
+    aktualizuj();
+    setTimeout(() => {
+      document.getElementById("slide9_VypocetDeti").classList.add("hidden");
+      document.getElementById("slide10_HorlavaLatka").classList.remove("hidden");
+    }, 4000);
+  } else {
+    spatnePokusy++;
+    zisk -= 500;
+    aktualizuj();
+    if (spatnePokusy < 3) {
+      vysledek.innerHTML = "❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)";
     } else {
-      spatnePokusy++;
-      zisk -= 500;
-      aktualizuj();
-      if (spatnePokusy < 3) {
-        vysledek.innerHTML = "❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)";
-      } else {
-        vysledek.innerHTML = "<strong>🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</strong>";
-      }
-      if (zisk < 0 || etika < 0) {
-        alert("💥 Firma zkrachovala. Začni znovu.");
-        location.reload();
-      }
+      vysledek.innerHTML = "<strong>🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</strong>";
+    }
+    if (zisk < 0 || etika < 0) {
+      alert("💥 Firma zkrachovala. Začni znovu.");
+      location.reload();
     }
   }
+}
+
+function rozhodnutiHorlavaLatka(volba) {
+  if (volba === 'bezpecnost') {
+    zisk -= 2000;
+  } else {
+    if (riziko < 30) {
+      riziko *= 2;
+    } else if (riziko >= 30 && riziko <= 50) {
+      riziko = 60;
+    } else {
+      riziko = 80;
+    }
+  }
+  aktualizuj();
+  setTimeout(() => {
+    document.getElementById("slide10_HorlavaLatka").classList.add("hidden");
+    document.getElementById("slide11_Pozar").classList.remove("hidden");
+  }, 2000);
+}
+
+function uhasitPozar() {
+  const zprava = document.getElementById("zpravaPozar");
+  const ztrata = Math.floor((riziko / 100) * zisk);
+  zisk -= ztrata;
+  zprava.innerHTML = `💥 Požár způsobil ztrátu ${ztrata} Kč. Zisk byl upraven.`;
+  aktualizuj();
+  setTimeout(() => {
+    document.getElementById("slide11_Pozar").classList.add("hidden");
+    document.getElementById("slide12_UlohaPocetZamestnancu").classList.remove("hidden");
+  }, 4000);
+}
+
+function zpracujUkolPracovniDoba() {
+  const odpoved = parseInt(document.getElementById("odpovedPracovniDoba").value, 10);
+  const vysledek = document.getElementById("vysledekPracovniDoba");
+  const spravnaOdpoved = 20;
+
+  if (odpoved === spravnaOdpoved) {
+    vysledek.innerHTML = "✅ <strong>Správně!</strong> Zbývající zaměstnanec musí opravdu odpracovat celkem 20 hodin.";
+    zisk += 1000;
+    aktualizuj();
+    setTimeout(() => {
+      document.getElementById("slide12_UlohaPracovniDoba").classList.add("hidden");
+      document.getElementById("slide13_DalsiKrok").classList.remove("hidden"); // přejít na další slide
+    }, 4000);
+  } else {
+    spatnePokusy++;
+    zisk -= 500;
+    aktualizuj();
+    if (spatnePokusy < 3) {
+      vysledek.innerHTML = "❌ Špatně. Zamysli se znovu – zohledni i tu práci, kterou už zaměstnanec odpracoval.";
+    } else {
+      vysledek.innerHTML = "<strong>🧠 Možná je čas poradit se s učitelem.</strong>";
+    }
+    if (zisk < 0 || etika < 0) {
+      alert("💥 Firma zkrachovala. Začni znovu.");
+      location.reload();
+    }
+  }
+}
+
+
+
+
+
+
+
 
 
     aktualizuj();
