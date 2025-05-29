@@ -133,7 +133,7 @@ input[type="text"] {
 }
 
 .vysledek-bingo {
-  font-size: 2em;
+  font-size: 2.4em;
   text-align: center;
   margin: 0.5em auto;
   font-weight: bold;
@@ -141,9 +141,8 @@ input[type="text"] {
 }
 
 .vysledek-chyba {
-  font-size: 1.8em;
+  font-size: 2.4em;
   color: red;
-  font-weight: bold;
   text-align: center;
   margin-top: 1em;
 }
@@ -364,8 +363,8 @@ input[type="text"] {
   <p class="task-desc">V některých zemích děti pracují, aby přežily. Když je zaměstnáš, získáš levnou pracovní sílu, ale je to eticky přijatelné?</p>
   <p class="task-desc">Co uděláš?</p>
   <div class="decision">
-    <button class="btn" onclick="rozhodnutiDeti('zamestnat')">Zaměstnám děti – zvýším zisk, snížím etiku, zvýším riziko, ale nakrmím je, ne?</button>
-    <button class="btn" onclick="rozhodnutiDeti('nezamestnat')">Nezaměstnám děti – zachovám etiku, mám přece čisté ruce, ne?</button>
+    <button class="btn" onclick="rozhodnutiDeti('zamestnat')">Zaměstnám děti – nakrmím je, ne?</button>
+    <button class="btn" onclick="rozhodnutiDeti('nezamestnat')">Nezaměstnám děti –  mám čisté ruce, ne?</button>
   </div>
   <p id="zpravaDeti"></p>
 </div>
@@ -380,7 +379,7 @@ input[type="text"] {
 
 <div id="slide9_VypocetDeti" class="hidden">
   <h2>Úkol: Kolik dětí nahradí 12 dospělých?</h2>
-  <p class="task-desc">Efektivita jednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? (Zaokrouhluj nahoru.)</p>
+  <p class="task-desc">Efektivita jednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? </p>
   <input type="number" id="odpovedDeti" placeholder="Zadej výsledek">
   <button class="btn" onclick="zpracujUkolDeti()">Odeslat odpověď</button>
   <p id="vysledekDeti"></p>
@@ -438,7 +437,7 @@ input[type="text"] {
 <!-- Slide 12: Úloha – pracovní doba -->
 <div id="slide12_UlohaPocetZamestnancu" class="hidden">
   <h2>Úkol: Výpočet pracovní doby</h2>
-  <p class="task-desc">Zakázku zvládnou 3 zaměstnanci za 10 hodin práce. Po polovině pracovní doby však dva z nich začnou zvracet a dostanou horečku. Kolik hodin celkem bude muset v továrně odpracovat zbývající zaměstnanec, aby zakázku dokončil?</p>
+  <p class="task-desc">Zakázku zvládnou 3 zaměstnanci za 10 hodin práce. Po polovině pracovní doby však dva z nich začnou zvracet. Kolik hodin celkem bude muset v továrně odpracovat zbývající zaměstnanec, aby zakázku dokončil?</p>
   <input type="number" id="odpovedPracovniDoba" placeholder="Zadej výsledek">
   <button class="btn" onclick="zpracujUkolPracovniDoba()">Odeslat odpověď</button>
   <p id="vysledekPracovniDoba"></p>
@@ -614,9 +613,9 @@ function volba(snizitBezpecnost) {
     }
 
     if (spatnePokusy < 3) {
-      vysledek.innerHTML = '<p class="vysledek-chyba">❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)</p>';
+      vysledek.innerHTML = '<p class="vysledek-chyba" style="color: purple;">❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)</p>';
     } else {
-      vysledek.innerHTML = '<p class="vysledek-chyba"><strong>🧠 Domluv konzultační hodinu se svým matikářem!</strong></p>';
+      vysledek.innerHTML = '<p class="vysledek-chyba">🧠 Domluv konzultační hodinu se svým matikářem!</p>';
     }
   }
 }
@@ -785,9 +784,10 @@ function rozhodnutiDeti(volba) {
     aktualizuj();
 
     if (spatnePokusy < 3) {
-      vysledek.innerHTML = '<p class="vysledek-chyba">❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)</p>';
+      vysledek.innerHTML = '<p class="vysledek-chyba" style="color: purple;">❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)</p>';
     } else {
-      vysledek.innerHTML = '<p class="vysledek-bingo"><strong>🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</strong></p>';
+      vysledek.innerHTML = '<p class="vysledek-bingo">🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</p>';
+	  
     }
 
     if (zisk < 0 || etika < 0) {
@@ -855,9 +855,9 @@ function zpracujUkolPracovniDoba() {
     aktualizuj();
 
     if (spatnePokusy < 3) {
-      vysledek.innerHTML = '<p class="vysledek-chyba">❌ Špatně. Zamysli se znovu.</p>';
+      vysledek.innerHTML = '<p class="vysledek-chyba" style="color: purple;">❌ Špatně. Zamysli se znovu.</p>';
     } else {
-      vysledek.innerHTML = '<p class="vysledek-chyba"><strong>🧠 Možná je čas poradit se s učitelem.</strong></p>';
+      vysledek.innerHTML = '<p class="vysledek-chyba">🧠 Máš domluvenou konzultaci se svým matikářem?</p>';
     }
 
     if (zisk < 0 || etika < 0) {
