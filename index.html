@@ -379,7 +379,7 @@ input[type="text"] {
 
 <div id="slide9_VypocetDeti" class="hidden">
   <h2>Úkol: Kolik dětí nahradí 12 dospělých?</h2>
-  <p class="task-desc">Efektivita jednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? </p>
+  <p class="task-desc">Efektivita jednoho 14letého dítěte je 60 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? </p>
   <input type="number" id="odpovedDeti" placeholder="Zadej výsledek">
   <button class="btn" onclick="zpracujUkolDeti()">Odeslat odpověď</button>
   <p id="vysledekDeti"></p>
@@ -451,17 +451,16 @@ input[type="text"] {
 
 <!-- Slide 13: Závěr -->
 <div id="slide13_Dekujeme" class="hidden">
-  <h2>🎉 Děkuji za hru!</h2>
+<p class="task-desc" style="font-size: 4.6em;"><strong>Děkuji za hru!</strong></p>
   <p class="task-desc">
-    Gratuluji k dokončení simulace <strong>Sweatshop CEO</strong>.<br>
-    Děkuji, že jste si vyzkoušeli, jak těžké může být balancovat mezi ziskem, etikou a rizikem.
-  </p>
+    <strong></strong>.<br>
+      </p>
   <p class="task-desc">
-    💰 Přeji vám hodně zisků,<br>
-    ⚖️ co nejméně rizika<br>
-    🤝 a hlavně ochotu pomáhat tam, kde je to opravdu třeba.
+    Přeji vám hodně zisků,<br>
+     co nejméně rizika<br>
+    a hlavně ochotu pomáhat tam, kde je to opravdu třeba.
   </p>
-  <p class="task-desc"><strong>👏 Díky, že jste to zkusili!</strong></p>
+  <p class="task-desc"><strong>Díky, že jste to zkusili!</strong></p>
 
   <div class="decision">
     <button class="btn" onclick="location.reload()">🔁 Začít znovu</button>
@@ -783,7 +782,7 @@ function rozhodnutiDeti(volba) {
 
   function zpracujUkolDeti() {
   const odpoved = parseInt(document.getElementById("odpovedDeti").value, 10);
-  const efektivita = 0.35;
+  const efektivita = 0.6;
   const potreba = Math.ceil(12 / efektivita);
   const vysledek = document.getElementById("vysledekDeti");
 
