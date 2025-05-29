@@ -70,12 +70,14 @@ h1, h2 {
 
 .scoreboard {
   font-size: 3.0em;
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  background: #fdf8e3; /* světle žlutá – zvýraznění */
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #e0c97f; /* decentní zlatý rámeček */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   margin: 20px auto;
+  text-align: center;
 }
 
 p.task-desc {
@@ -96,8 +98,8 @@ p.task-desc {
 }
 
 button.btn {
-  padding: 28px;
-  font-size: 2em;
+  padding: 18px;
+  font-size: 2.4em;
   border-radius: 12px;
   background-color: #007acc;
   color: white;
@@ -206,7 +208,7 @@ input[type="text"] {
 
 <body>
 
-  <h1>Sweatshop CEO</h1>
+  <h1>FOSTRA MDD 2025</h1>
 
  <div class="scoreboard">
   <p>💰 Zisk: <span id="zisk">0</span></p>
@@ -215,7 +217,7 @@ input[type="text"] {
 </div>
 
 <div id="slide0_uvod">
-  <h1>Vítej ve hře Sweatshop CEO</h1>
+  <h1>Vítej ve hře Sweatshop CEO v.1</h1>
   <p class="task-desc">Jsi ředitel výrobního závodu v rozvojové zemi. Tvým cílem je dosahovat zisku, ale zároveň si hlídej etiku a riziko kolapsu firmy!</p>
   <div class="decision">
     <button class="btn" onclick="jdiNaSlide1()">Začni podnikat</button>
