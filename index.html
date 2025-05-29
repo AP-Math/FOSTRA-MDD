@@ -210,7 +210,7 @@ input[type="text"] {
   <h1>FOSTRA MDD 2025</h1>
 
  <div class="scoreboard">
-  <p>💰 Zisk: <span id="zisk">0</span></p>
+  <p>💰 Zisk: <span id="zisk">1000</span></p>
   <p>🌱 Etika: <span id="etika">100</span> %</p>
   <p>⚠️ Riziko: <span id="riziko">0</span> %</p>
 </div>
@@ -249,7 +249,7 @@ input[type="text"] {
   <!-- Slide s úkolem -->
   <div id="slide2_Ukol" class="hidden">
     <h2>Úkol: Výpočet</h2>
-    <p class="task-desc">Vypočítej: Pokud zaměstnáš 20 dětí a každému platíš 10 Kč/hod a pracují 10 hodin denně, kolik je to za den?</p>
+    <p class="task-desc">Zaměstnáváš 18 dětí, každému platíš 12 Kč za hodinu a pracují 10 hodin denně. Kolik jim celkem zaplatíš za jeden den?</p>
     <input type="number" id="odpoved" placeholder="Zadej výsledek">
     <button class="btn" onclick="zpracujUkol()">Odeslat odpověď</button>
     <p id="vysledek"></p>
@@ -449,12 +449,29 @@ input[type="text"] {
 </div>
 
 
+<!-- Slide 13: Závěr -->
+<div id="slide13_Dekujeme" class="hidden">
+  <h2>🎉 Děkuji za hru!</h2>
+  <p class="task-desc">
+    Gratuluji k dokončení simulace <strong>Sweatshop CEO</strong>.<br>
+    Děkuji, že jste si vyzkoušeli, jak těžké může být balancovat mezi ziskem, etikou a rizikem.
+  </p>
+  <p class="task-desc">
+    💰 Přeji vám hodně zisků,<br>
+    ⚖️ co nejméně rizika<br>
+    🤝 a hlavně ochotu pomáhat tam, kde je to opravdu třeba.
+  </p>
+  <p class="task-desc"><strong>👏 Díky, že jste to zkusili!</strong></p>
 
+  <div class="decision">
+    <button class="btn" onclick="location.reload()">🔁 Začít znovu</button>
+  </div>
+</div>
 
 
 
   <script>
-    let zisk = 0;
+    let zisk = 1000;
     let etika = 100;
     let riziko = 0;
     let spatnePokusy = 0;
@@ -555,8 +572,8 @@ function jdiNaSlide12() {
 
 
 function jdiNaSlide13() {
-  document.getElementById("slide12_UlohaPracovniDoba").classList.add("hidden");
-  document.getElementById("slide13_DalsiKrok").classList.remove("hidden");
+  document.getElementById("slide12_UlohaPocetZamestnancu").classList.add("hidden");
+  document.getElementById("slide13_Dekujeme").classList.remove("hidden");
   document.getElementById("pokracuj12").classList.add("hidden");
 }
 
@@ -590,7 +607,7 @@ function volba(snizitBezpecnost) {
 
     function zpracujUkol() {
   const odpoved = parseInt(document.getElementById("odpoved").value, 10);
-  const spravne = 20 * 10 * 10;
+  const spravne = 18 * 12 * 10;
   const vysledek = document.getElementById("vysledek");
 
   if (odpoved === spravne) {
