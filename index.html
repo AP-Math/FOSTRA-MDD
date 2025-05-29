@@ -42,7 +42,7 @@ h1, h2 {
 
 /* Popis úkolu – větší a čitelnější */
 p.task-desc {
-  font-size: 2.8em;
+  font-size: 2.4em;
   text-align: center;
   margin: 1em auto;
   max-width: 800px;
@@ -95,6 +95,28 @@ input[type="text"] {
   box-shadow: 0 0 5px rgba(0,0,0,0.05);
   background: white;
 }
+
+
+.vysledek-bingo {
+  font-size: 2em; /* podobné jako h2 */
+  text-align: center;
+  margin: 0.5em auto;
+  font-weight: bold;
+  color: green;
+}
+
+
+.vysledek-chyba {
+  font-size: 1.8em;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1em;
+}
+
+
+
+
 
 /* Skryté slidy */
 .hidden {
@@ -162,9 +184,12 @@ input[type="text"] {
     </div>
   </div>
 
-  <div id="nextSlide" class="hidden">
-    <button class="btn" onclick="jdiNaSlide2()">Pokračovat</button>
-  </div>
+
+
+
+
+
+
 
   <!-- Slide s úkolem -->
   <div id="slide2_Ukol" class="hidden">
@@ -245,7 +270,7 @@ input[type="text"] {
 </div>
 
 
-<<div id="slide9_VypocetDeti" class="hidden">
+<div id="slide9_VypocetDeti" class="hidden">
   <h2>Úkol: Kolik dětí nahradí 12 dospělých?</h2>
   <p class="task-desc">Efektivita jednoho 14letého dítěte je 35 % oproti dospělému. Kolik dětí musíš zaměstnat, aby nahradily práci 12 dospělých? (Zaokrouhluj nahoru.)</p>
   <input type="number" id="odpovedDeti" placeholder="Zadej výsledek">
@@ -301,37 +326,47 @@ input[type="text"] {
       document.getElementById("riziko").textContent = riziko;
     }
 
-    function volba(snizitBezpecnost) {
-      const tlacitka = document.querySelectorAll("#slide1_zdravotni .btn");
-      tlacitka.forEach(btn => btn.disabled = true);
-      if (snizitBezpecnost) {
-        zisk += 2000;
-        etika -= 30;
-        riziko += 20;
-      } else {
-        zisk += 500;
-      }
-      aktualizuj();
-      document.getElementById("nextSlide").classList.remove("hidden");
-    }
+function volba(snizitBezpecnost) {
+  const tlacitka = document.querySelectorAll("#slide1_zdravotni .btn");
+  tlacitka.forEach(btn => btn.disabled = true);
+
+  if (snizitBezpecnost) {
+    zisk += 3000;
+    etika -= 30;
+    riziko += 20;
+  } else {
+    zisk += 1500;
+  }
+
+  aktualizuj();
+
+  // Po 4 vteřinách přejít na další slide
+  setTimeout(() => {
+    document.getElementById("slide1_zdravotni").classList.add("hidden");
+    document.getElementById("slide2_Ukol").classList.remove("hidden");
+  }, 4000);
+}
+
+
+
 
     function jdiNaSlide1() {
   document.getElementById("slide0_uvod").classList.add("hidden");
   document.getElementById("slide1_zdravotni").classList.remove("hidden");
 }
 
-function jdiNaSlide2() {
-  document.getElementById("slide1_zdravotni").classList.add("hidden");
-  document.getElementById("nextSlide").classList.add("hidden");
-  document.getElementById("slide2_Ukol").classList.remove("hidden");
-}
+
+
+
+
+
 
     function zpracujUkol() {
       const odpoved = parseInt(document.getElementById("odpoved").value, 10);
       const spravne = 20 * 10 * 10;
       const vysledek = document.getElementById("vysledek");
       if (odpoved === spravne) {
-        vysledek.innerHTML = "✅ <strong>BINGO!</strong> Pokračuj dál.";
+        vysledek.innerHTML = '<p class="vysledek-bingo">✅ <strong>BINGO!</strong> Pokračuj dál.</p>';
         zisk += 2000;
         aktualizuj();
         setTimeout(() => {
@@ -348,9 +383,9 @@ function jdiNaSlide2() {
           return;
         }
         if (spatnePokusy < 3) {
-          vysledek.innerHTML = "❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)";
+          vysledek.innerHTML = '<p class="vysledek-chyba">❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)</p>';
         } else {
-          vysledek.innerHTML = "<strong>🧠 Domluv konzultační hodinu se svým matikářem!</strong>";
+          vysledek.innerHTML = '<p class="vysledek-chyba"><strong>🧠 Domluv konzultační hodinu se svým matikářem!</strong></p>';
         }
       }
     }
@@ -362,11 +397,11 @@ function jdiNaSlide2() {
       if (volba === 'investovat') {
         zisk -= 500;
         riziko = Math.max(0, riziko - 10);
-        zprava.textContent = "Investovali jste do bezpečnosti. Zisk je nyní nižší, ale riziko kolapsu kleslo.";
+        zprava.innerHTML = '<p class="vysledek-bingo">Investovali jste do bezpečnosti. Zisk je nyní nižší, ale riziko kolapsu kleslo.</p>';
       } else {
         zisk += 500;
         riziko += 20;
-        zprava.textContent = "Ušetřili jste, ale riziko požáru výrazně vzrostlo.";
+        zprava.textContent = '<p class="vysledek-chyba">Ušetřili jste, ale riziko požáru výrazně vzrostlo.</p>';
       }
       aktualizuj();
       setTimeout(() => {
@@ -380,7 +415,7 @@ function jdiNaSlide2() {
       const tlacitka = document.querySelectorAll("#slide4_Znacky .btn");
       if (znackyUzSpravne) return;
       if (volba === 'vsechny') {
-        zprava.innerHTML = "✅ <strong>BINGO!</strong> Všechny uvedené značky byly spojovány se sweatshopy. Výborně!";
+            zprava.innerHTML = '<p class="vysledek-bingo">✅ <strong>BINGO!</strong> Pokračuj dál.</p>';
         zisk += 3000;
         etika += 10;
         aktualizuj();
@@ -392,7 +427,7 @@ function jdiNaSlide2() {
           document.getElementById("pravdepodobnost").textContent = riziko;
         }, 2000);
       } else {
-        zprava.innerHTML = "❌ Tato značka byla skutečně spojována se sweatshopy. Zkus přemýšlet komplexněji.";
+        zprava.innerHTML = '<p class="vysledek-chyba">❌ Tato značka byla skutečně spojována se sweatshopy. Zkus přemýšlet komplexněji.</p>';
         etika -= 10;
         riziko += 10;
         aktualizuj();
@@ -404,11 +439,11 @@ function jdiNaSlide2() {
   const nahoda = Math.random() * 100;
 
   if (nahoda < riziko) {
-    vysledek.innerHTML = "💸 Byli jste pokutováni 2000 Kč. Riziko se snížilo na polovinu.";
+    vysledek.innerHTML = '<p class="vysledek-chyba">💸 Byli jste pokutováni 2000 Kč. Riziko se snížilo na polovinu.</p>';
     zisk -= 2000;
     riziko = Math.floor(riziko / 2);
   } else {
-    vysledek.innerHTML = "🍀 Měli jste štěstí. Kontrola nic nenašla, pokuta nebyla udělena.";
+    vysledek.innerHTML = '<p class="vysledek-bingo">🍀 Měli jste štěstí. Kontrola nic nenašla, pokuta nebyla udělena.</p>';
   }
 
   aktualizuj();
@@ -426,15 +461,15 @@ function jdiNaSlide2() {
       const spravne = 0.15 * 20000;
       const vysledek = document.getElementById("vysledek2");
       if (odpoved === spravne) {
-        vysledek.innerHTML = "✅ Správně! Můžeš pokračovat.";
+            vysledek.innerHTML = '<p class="vysledek-bingo">✅ <strong>BINGO!</strong> Pokračuj dál.</p>';
         zisk += 1000;
         aktualizuj();
         setTimeout(() => {
           document.getElementById("slide6_Ukol2").classList.add("hidden");
           document.getElementById("slide7_Dodavatel").classList.remove("hidden");
-        }, 2000);
+        }, 4000);
       } else {
-        vysledek.innerHTML = "❌ Špatně. Uvažuj znovu.";
+        vysledek.innerHTML = '<p class="vysledek-chyba">❌ Špatně. Uvažuj znovu.</p>';
         zisk -= 500;
         aktualizuj();
         if (zisk < 0 || etika < 0) {
@@ -462,7 +497,7 @@ function jdiNaSlide2() {
   setTimeout(() => {
     document.getElementById("slide7_Dodavatel").classList.add("hidden");
     document.getElementById("slide8_Zamestnanideti").classList.remove("hidden");
-  }, 3000); // 3 sekundy pauza před přechodem
+  }, 4000); // 3 sekundy pauza před přechodem
 }
 
 
@@ -475,9 +510,9 @@ function rozhodnutiDeti(volba) {
     zisk += 3000;
     etika -= 30;
     riziko += 20;
-    zprava.innerHTML = "Zaměstnali jste děti. Zisk vzrostl, ale etické skóre kleslo.";
+    zprava.innerHTML = '<p class="vysledek-chyba">Zaměstnali jste děti. Zisk vzrostl, ale etické skóre kleslo.</p>';
   } else {
-    zprava.innerHTML = "Zachovali jste etiku? Peníze nejsou všechno – čisté ruce možná vydrží déle?";
+    zprava.innerHTML = '<p class="vysledek-chyba">Zachovali jste etiku? Peníze nejsou všechno – čisté ruce možná vydrží déle?</p>';
   }
 
   aktualizuj();
@@ -496,7 +531,7 @@ function zpracujUkolDeti() {
   const vysledek = document.getElementById("vysledekDeti");
 
   if (odpoved === potreba) {
-    vysledek.innerHTML = "✅ <strong>BINGO!</strong> Správně!";
+        vysledek.innerHTML = '<p class="vysledek-bingo">✅ <strong>BINGO!</strong> Pokračuj dál.</p>';
     zisk += 2000;
     aktualizuj();
     setTimeout(() => {
@@ -508,9 +543,9 @@ function zpracujUkolDeti() {
     zisk -= 500;
     aktualizuj();
     if (spatnePokusy < 3) {
-      vysledek.innerHTML = "❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)";
+      vysledek.innerHTML = '<p class="vysledek-chyba">❌ Špatně. Zkus to znovu. (Zisk se snížil o 500 Kč)</p>';
     } else {
-      vysledek.innerHTML = "<strong>🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</strong>";
+      vysledek.innerHTML = '<p class="vysledek-bingo"><strong>🧠 Ano, to máš dobře – že už máš domluvenou konzultaci se svým matikářem.</strong></p>';
     }
     if (zisk < 0 || etika < 0) {
       alert("💥 Firma zkrachovala. Začni znovu.");
@@ -542,7 +577,7 @@ function uhasitPozar() {
   const zprava = document.getElementById("zpravaPozar");
   const ztrata = Math.floor((riziko / 100) * zisk);
   zisk -= ztrata;
-  zprava.innerHTML = `💥 Požár způsobil ztrátu ${ztrata} Kč. Zisk byl upraven.`;
+  zprava.innerHTML = '<p class="vysledek-chyba">💥 Požár způsobil ztrátu ${ztrata} Kč. Zisk byl upraven.</p>';
   aktualizuj();
   setTimeout(() => {
     document.getElementById("slide11_Pozar").classList.add("hidden");
@@ -556,8 +591,8 @@ function zpracujUkolPracovniDoba() {
   const spravnaOdpoved = 20;
 
   if (odpoved === spravnaOdpoved) {
-    vysledek.innerHTML = "✅ <strong>Správně!</strong> Zbývající zaměstnanec musí opravdu odpracovat celkem 20 hodin.";
-    zisk += 1000;
+      vysledek.innerHTML = '<p class="vysledek-bingo">✅ <strong>BINGO!</strong> Zbývající zaměstnanec musí opravdu odpracovat celkem 20 hodin.</p>';
+        zisk += 1000;
     aktualizuj();
     setTimeout(() => {
       document.getElementById("slide12_UlohaPracovniDoba").classList.add("hidden");
@@ -568,9 +603,9 @@ function zpracujUkolPracovniDoba() {
     zisk -= 500;
     aktualizuj();
     if (spatnePokusy < 3) {
-      vysledek.innerHTML = "❌ Špatně. Zamysli se znovu – zohledni i tu práci, kterou už zaměstnanec odpracoval.";
+      vysledek.innerHTML = '<p class="vysledek-chyba">❌ Špatně. Zamysli se znovu.</p>';
     } else {
-      vysledek.innerHTML = "<strong>🧠 Možná je čas poradit se s učitelem.</strong>";
+      vysledek.innerHTML = '<p class="vysledek-chyba"><strong>🧠 Možná je čas poradit se s učitelem.</strong></p>';
     }
     if (zisk < 0 || etika < 0) {
       alert("💥 Firma zkrachovala. Začni znovu.");
